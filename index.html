@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="bg-BG" itemscope itemtype="http://schema.org/Organization">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Отворени данни за фирмите регистрирани по ЗДДС</title>
+
+	<meta itemprop="name" content="Отворени данни за фирмите регистрирани по ЗДДС"/>
+	<meta itemprop="description" content="Отворени данни за фирмите регистрирани по ЗДДС"/>
+	<link rel="image_src" type="image/png" href="res/b_big.png" />
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />	
+	<link type="text/css" href="res/business.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="wrapper">
+	<p class="language"><a href="/">Още отворени данни</a><br/>
+	<a href="/business/en">In English</a></p>
+	<p class="quote"><i>"Вярваме само на Господ.<br/>Всички останали да си носят отворени данни."</i></p>
+	<p class="first">На <a href="http://nra.bg/vatbulletin/" target="_blank">страницата на НАП</a> ще намерите данните за фирмите регистрирани по ЗДДС. 
+Може да се абонирате свободно и да получавате ежедневно линк, от където да свалите пълния списък с фирми актуален към деня. Проблемът с този метод обаче е, 
+че всеки ден трябва да сваляте 350000 фирми или 60Мб с данни (13 Мб zip-нати). Ако изпуснете да направите това в даден ден, не може да го свалите по-късно. 
+Освен това кодировката на файла е windows-1251, а не стандартната вече UTF8.</p>
+	<p>Затова направих скрипт, който автоматично да сваля данните всеки ден. На линка долу ще намерите ZIP архиви на всички списъки, които са свалени до сега. 
+Форматът на имената им е <i>dds_20121023.csv.zip</i> като <i>20121023</i> е датата 23.10.2012 форматирана за по-лесно сортиране. За улесенение също автоматично се 
+изготвя списък с промените - <i>changes_20121023.csv.zip</i>. Те съдържат редовете изтрити и добавени за въпросния ден. Всеки изтрит ред започва с <i>delete</i>, а
+всеки добавен ред - с <i>insert</i>. Така лесно може да филтрирате и изготвяте справки.</p>
+	<p>Трябва да се отбележи, че някои от записите всъщност само са променени - например адрес или име на фирмата. Има случаи, в които една фирма е 
+пререгистрирана със същия адрес и име, но различна дата на регистрация и БУЛСТАТ. Във всички тези случаи ще намерите един запис <i>delete</i> със старата и 
+един <i>insert</i> с новата информация. Най-често те са един след друг. Освен това ще намерите и статистика за промените съдържаща брой добавени, променени и 
+изтрити фирми по дати. За променени се смятат онези записи, в които БУЛСТАТ-ът се е запазил. Тази статистика ще намерите на графиката по-долу.</p>
+	<p>Забелязват се някои аномалии в данните. Около 1950 фирми са с повтарящи се БУЛСТАТ номер. 1894 от тях са с БУЛСТАТ 123456789.</p>
+	<p>Свалете данните, анализирайте ги и ги използвайте както сметнете за добре. Интересна справка ще е да се поставят адресите на всички фирми на карта и
+да се визуализира разпределените им из България. Може да се групират по общини и да се покаже интерактивно през времето как се регистрират и отрегистрират по ДДС.</p>
+
+	<p style="text-align:center;"><a href="data/changes_stats.csv">Статистика на промените</a> | <a href="data">Всички данни</a> | 
+<a href="http://creativecommons.org/licenses/by/3.0/">CC-BY</a> | <a href="http://thedatahub.org/dataset/bulgaria-vat-firms" target="_blank">TheDataHub</a></p>
+	<p style="text-align:center;"><a href="http://yurukov.net/blog">Боян Юруков</a> | <a href="mailto:yurukov@gmail.com">yurukov@gmail.com</a></p>
+
+	<hr/>
+	<h3>Фирми регистрирани по ДДС по градове</h3><i>Увеличете картата за по-подробни графики. Съдържа 93% от фирмите. Около 7% са в села.</i>
+</div>
+<div id="map-wrapper">
+	<div id="map"></div>
+</div>
+<div class="wrapper">
+
+	<h3>Промени в списъка с регистрирани фирми по дата на промяната</h3>
+	<div id="date-graph"></div>
+
+	<h3>Брой фирми по месеци на регистрацията от 1995-та насам</h3>
+	<div id="reg-graph"></div>
+
+	<div style="text-align:center;margin-top:50px;">
+	Проектът избра хостинг от<br/>
+	<a href="http://superhosting.bg/" target="_blank"><img alt="Superhosting.bg" title="Superhosting.bg" src="http://yurukov.net/blog/wp-content/themes/yuri_lamperiq/images/superhosting.gif"></a>
+	</div>
+</div>
+
+
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+	<script src="res/leaflet.d3.graphicon.js"></script>
+	<script src="res/leaflet.fullscreen.js"></script>
+	<script src="res/business.js"></script>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2905006-14']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+</body>
+</html>

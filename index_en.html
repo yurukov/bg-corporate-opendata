@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="bg-BG" itemscope itemtype="http://schema.org/Organization">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Opendata on Bulgarian firms registered for VAT</title>
+
+	<meta itemprop="name" content="Opendata on Bulgarian firms registered for VAT"/>
+	<meta itemprop="description" content="Opendata on Bulgarian firms registered for VAT"/>
+	<link rel="image_src" type="image/png" href="res/b_big.png" />
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />	
+	<link type="text/css" href="/business/res/business.css" rel="stylesheet" />	
+</head>
+<body>
+
+<div class="wrapper">
+	<p class="language"><a href="/">More open data</a><br/>
+	<a href="/business">На български</a></p>
+	<p class="quote"><i>"I trust only God.<br/>All others should bring open data."</i></p>
+	<p class="first">On the <a href="http://nra.bg/vatbulletin/" target="_blank">website of NRA</a> you can find a list of all firms registered for VAT. 
+This is optional in Bulgaria as explained <a href="http://www.tmf-vat.com/vat/bulgaria-vat.html">here</a>. One can register for updates for this list and
+download it daily. The problem is that each day you need to download data on 350000 firms or 60Mb (13 Mb zipped). If you miss one day, you can't get the file later.
+There's also and issue with encoding in the original files.</p>
+	<p>That's why I automated the process. In the links below you'lll find a folder with ZIP archives of historic VAT firm lists. The format of the files is 
+<i>dds_20121023.csv.zip</i> with <i>20121023</i> representing the date 23.10.2012 for easy sorting. The day-to-day changes can be found in a separate list - 
+<i>changes_20121023.csv.zip</i>. There you'll see lines that have been deleted (starting with <i>delete</i>) and those that are inserted (starting with <i>insert</i>).
+This should make it easier to make reports.</p>
+	<p>It should be noted that some of the lines in the "changes" list are actually edited. For such records you'll find one <i>insert</i> and one <i>delete</i>\
+line usually one after the other. There's also a statistics on the number of daily changes. They include "edited" records. These are those insert/delete lines, that
+have the same unique firm id (BULSTAT). The changed records do not reflect reregistered companies having a new BULSTAT number.</p>
+	<p>One can notice also some annomalies. There are 1950 firms with duplicate BULSTAT numbers. 1894 of them with 123456789.</p>
+
+	<p style="text-align:center;"><a href="data/changes_stats.csv">Stats on daily changes</a> | <a href="data">Folder with all the data</a> | 
+<a href="http://creativecommons.org/licenses/by/3.0/">CC-BY</a> | <a href="http://thedatahub.org/dataset/bulgaria-vat-firms" target="_blank">TheDataHub</a></p>
+	<p style="text-align:center;"><a href="http://yurukov.net/blog">Boyan Yurukov</a> | <a href="mailto:yurukov@gmail.com">yurukov@gmail.com</a></p>
+
+	<hr/>
+
+	<h3>Firms registered for VAT per cities</h3><i>Zoom for detailed charts. Data based on 93% of the firms. About 7% are in villages.</i>
+</div>
+<div id="map-wrapper">
+	<div id="map"></div>
+</div>
+<div class="wrapper">
+
+	<h3>Changes in the list of firms by date</h3>
+	<div id="date-graph"></div>
+
+	<h3>Number of companies registered for VAT by month</h3>
+	<div id="reg-graph"></div>
+
+	<div style="text-align:center;margin-top:50px;">
+	The project is hosted by <br/>
+	<a href="http://superhosting.bg/" target="_blank"><img alt="Superhosting.bg" title="Superhosting.bg" src="http://yurukov.net/blog/wp-content/themes/yuri_lamperiq/images/superhosting.gif"></a>
+	</div>
+</div>
+
+
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+	<script src="/business/res/leaflet.d3.graphicon.js"></script>
+	<script src="/business/res/leaflet.fullscreen.js"></script>
+	<script src="/business/res/business.js"></script>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2905006-14']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+</body>
+</html>

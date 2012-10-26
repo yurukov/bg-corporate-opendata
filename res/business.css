@@ -1,0 +1,60 @@
+body {
+	font-family: Verdana;
+	padding:0;
+}
+
+.wrapper {
+	width:900px;
+	text-align:justify;
+	margin:20px auto;
+}
+.wrapper p.first:first-letter { 
+	font-size:350%;
+	line-height:50px;
+}
+.wrapper p.quote {
+	text-align:right;
+	margin-bottom:50px;
+}
+
+.wrapper p.language {
+	float:left;
+	text-align:left;
+	margin-bottom:30px;
+}
+
+#date-graph,#reg-graph,.arc {
+	font: 12px sans-serif;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.bar, .area {
+	fill: steelblue;
+}
+
+.x.axis path {
+	display: none;
+}
+#map-wrapper {
+	padding:0 80px;
+}
+#map {
+	width:100%;
+	height:500px;
+}
+
+.leaflet-control-zoom-fullscreen { background-image: url(/business/res/icon-fullscreen.png); }
+.leaflet-control-zoom-fullscreen.last { margin-top: 5px }
+#map:-webkit-full-screen { width: 100% !important; height: 100% !important; }
+#map:-moz-full-screen { width: 100% !important; height: 100% !important; }
+#map:full-screen { width: 100% !important; height: 100% !important; }
+
+.arc path {
+  stroke: #bbb;
+}
